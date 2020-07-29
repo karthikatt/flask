@@ -1,0 +1,82 @@
+<html>
+   <head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script type = "text/javascript" src = "{{ url_for('static', filename = 'index.js') }}" ></script>
+   </head>
+   <body >
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" >SSN institutions</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li ><a href="faculty">Faculty</a></li>
+		      <li ><a href="student">Student</a></li>
+		    </ul>
+		  </div>
+		</nav>
+		<div class="container">
+		  <h2>Student Form</h2>
+		  <form name="studentForm" action="/submit_student" method="post">
+		    <div class="form-group">
+		      <label for="name">Name:</label>
+		      <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" required>
+		    </div>
+			<div class="form-group">
+			  <label for="sel1">Select Banch:</label>
+			  <select class="form-control" id="select" name="branch" required>
+			    <option value="CSE">B.E CSE</option>
+			    <option value="ECE">B.E ECE</option>
+			    <option value="EEE">B.E EEE</option>
+			    <option value="BT">B.TECH</option>
+			    <option value="IT">B.E IT</option>
+			    <option value="BME">B.E BME</option>
+			  </select>
+			</div>
+			<div class="form-group">
+				<label >Mode of admission:</label>
+				<div class="form-control">
+					<label class="radio-inline"><input type="radio" name="mode" value="Single window system" checked>Single window system</label>
+					<label class="radio-inline "><input type="radio" name="mode" value="Management">Management</label>
+				</div>
+			</div>
+			<div class="form-group">
+		      <label for="mobileno">Mobile number:</label>
+		      <input type="mobileno" class="form-control" id="mobileno" name="mobileno" placeholder="Enter mobile number" pattern="[0-9]{10}"
+       required>
+		    </div>
+		    <div class="form-group">
+		      <label for="email">Email:</label>
+		      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" pattern=".+@gmail.com" size="30" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="cd">Current address:</label>
+		      <input type="text" class="form-control" id="cd" name="cd"placeholder="Enter current address" required>
+		    </div>
+		    <div class="checkbox">
+		      <label><input type="checkbox" id="check"> Current address same as Permanent address</label>
+		    </div>
+		    <div class="form-group">
+		      <label for="pd">Permanent address:</label>
+		      <input type="text" class="form-control" id="pd" name="pd" placeholder="Enter Permanent address" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="fname">Father name:</label>
+		      <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Father name" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="fmobileno">Father's mobile number:</label>
+		      <input type="text" class="form-control" id="fmobileno" name="fmobileno" placeholder="Enter Father's mobile number" pattern="[0-9]{10}"
+       required>
+		    </div>
+		    <div class="text-center form-group">
+		    	<input type="submit" class="btn btn-primary form-control" value="Submit"></input>
+		    </div>
+		  </form>
+		</div>
+   </body>
+</html>

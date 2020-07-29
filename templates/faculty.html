@@ -1,0 +1,99 @@
+<html>
+   <head>
+      <script type = "text/javascript" 
+		         src = "{{ url_for('static', filename = 'hello.js') }}" ></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   </head>
+   <body >
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" >SSN institutions</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li ><a href="faculty">Faculty</a></li>
+		      <li ><a href="student">Student</a></li>
+		    </ul>
+		  </div>
+		  <form name="facultyForm" action="/search_student" method="post">
+		  <div class="container">
+		  	<div class="form-group">
+				<label for="sb">Search Student:</label>
+				<input type="text" class="form-control" id="sb" name="id" required="">
+			</div>
+			<div class="text-center form-group">
+		    	<input type="submit" class="btn btn-primary form-control" value="Search"></input>
+		    </div>
+		  </div>
+		  </form>
+		  {% if noRecord %}
+		  	<h1 style="text-align: center;">Roll number not found</h1>
+		  {% endif %}
+		  {% if data %}
+		  <div class="container">
+		  <h2>Student data</h2>
+		  <form name="studentForm" action="/verifyAndUpdate_student" method="post">
+		  	<input type="hidden" name="id" value="{{data[1]}}">
+		    <div class="form-group">
+		      <label for="name">Name:</label>
+		      <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ data[0][0][1] }}" required>
+		    </div>
+			<div class="form-group">
+			  <label for="sel1">Select Banch:</label>
+			  <select class="form-control" id="select" name="branch" required>
+			    <option value="CSE" {% if data[0][0][2]=='CSE' %} selected="selected"{% endif %}>B.E CSE</option>
+			    <option value="ECE" {% if data[0][0][2]=='ECE' %} selected="selected"{% endif %}>B.E ECE</option>
+			    <option value="EEE" {% if data[0][0][2]=='EEE' %} selected="selected"{% endif %}>B.E EEE</option>
+			    <option value="BT" {% if data[0][0][2]=='BT' %} selected="selected"{% endif %}>B.TECH</option>
+			    <option value="IT" {% if data[0][0][2]=='IT' %} selected="selected"{% endif %}>B.E IT</option>
+			    <option value="BME" {% if data[0][0][2]=='BME' %} selected="selected"{% endif %}>B.E BME</option>
+			  </select>
+			</div>
+			<div class="form-group">
+				<label >Mode of admission:</label>
+				<div class="form-control">
+					<label class="radio-inline"><input type="radio" name="mode" value="Single window system" {% if data[0][0][3]=='Single window system' %} checked="" {% endif %}>Single window system</label>
+					<label class="radio-inline "><input type="radio" name="mode" value="Management" {% if data[0][0][3]=='Management' %} checked="" {% endif %}>Management</label>
+				</div>
+			</div>
+			<div class="form-group">
+		      <label for="mobileno">Mobile number:</label>
+		      <input type="mobileno" value="{{ data[0][0][4] }}" class="form-control" id="mobileno" name="mobileno" placeholder="Enter mobile number" pattern="[0-9]{10}"
+       required>
+		    </div>
+		    <div class="form-group">
+		      <label for="email">Email:</label>
+		      <input type="email" value="{{ data[0][0][5] }}" class="form-control" id="email" name="email" placeholder="Enter email" pattern=".+@gmail.com" size="30" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="cd">Current address:</label>
+		      <input type="text" value="{{ data[0][0][6] }}" class="form-control" id="cd" name="cd"placeholder="Enter current address" required>
+		    </div>
+		    <div class="checkbox">
+		      <label><input type="checkbox" id="check"> Current address same as Permanent address</label>
+		    </div>
+		    <div class="form-group">
+		      <label for="pd">Permanent address:</label>
+		      <input type="text" value="{{ data[0][0][7] }}" class="form-control" id="pd" name="pd" placeholder="Enter Permanent address" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="fname">Father name:</label>
+		      <input type="text" value="{{ data[0][0][8] }}" class="form-control" id="fname" name="fname" placeholder="Enter Father name" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="fmobileno">Father's mobile number:</label>
+		      <input type="text" value="{{ data[0][0][9] }}" class="form-control" id="fmobileno" name="fmobileno" placeholder="Enter Father's mobile number" pattern="[0-9]{10}"
+       required>
+		    </div>
+		    <div class="text-center form-group">
+		    	<input type="submit" class="btn btn-primary form-control" value="Verify and update"></input>
+		    </div>
+		  </form>	
+		  </div>	    
+		{% endif %}
+   </body>
+</html>
